@@ -1,0 +1,602 @@
+{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica-Bold;\f1\fswiss\fcharset77 Helvetica;\f2\fswiss\fcharset77 Helvetica-Oblique;
+\f3\fswiss\fcharset77 Helvetica-BoldOblique;\f4\fnil\fcharset77 Monaco;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww11080\viewh13160\viewkind0
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f0\b\fs32 \cf0 A-Chaos Lib 1.01
+\f1\b0\fs24 \
+January 2005\
+\
+Port to WinMax(thanks to L\'8eopold Frey!) and minor changes in the help files for cross platform compatibilty. \
+
+\f0\b\fs32 \
+\
+A-Chaos Lib 1.0
+\f1\b0\fs24 \
+March 2004\
+\
+A-Chaos Lib is a systematic approach to emulate the use of up-to-date known strange attractors' non-linear equations inside Max. I have always have a keen interest on chaos, and now I have decided to bridge my own chaotic extensions that I have perused on the internet, with the larger system that Richard Dudas provided to the Max community since 1996: The Chaos Collection. The Chaos collection objects are OS9 only, hence all objects that call <math.h> (only the ones that make calls to exp, log, sin, cos, etc functions) do not work under OSX, only the abstraction versions are fully compatible. I have parsed the abstractions and built the formulas into external objects, more robust data handling than abstraction, both for OS9 and X. Richard was very kind in providing me the source to his objects from which I could implement with no major hassle.  \
+\
+All objects share a common interface:\
+\
+	-all objects (with few exceptions) take inital arguments or via a '
+\f2\i set
+\f1\i0 ' message  that you may '
+\f2\i reset
+\f1\i0 ' to the same initial numbers anytime along the way (concept of this is by xoaz, a big hand to!). Hence, '
+\f2\i set
+\f1\i0 ' message or initial arguments after the name of the object inside the object box set all arguments that you may fiddle around with. Non-linearity is highly dependent on initial conditions: small changes in initial parameters often lead to very very different behaviours. Be carefull, outside of range values rapidly lead to highly unstable systems that diverge to 
+\f2\i infinity
+\f1\i0  or 
+\f2\i Not A Number
+\f1\i0  (the 
+\f2\i nan
+\f1\i0  acronym in the number box) situations, or simply periodic functions;\
+\
+	-all objects take each parameter as a single independent message (for instance 
+\f2\i a 0.27
+\f1\i0 , or 
+\f2\i dt 0.2
+\f1\i0 ) that _does_not_ set the inital variable so that you may reset to a previously set value -- this was not how the Chaos Collection operated, but seems more safe and passible of more values exploration this way;\
+\
+	-all objects respond to the '
+\f2\i om'
+\f1\i0  message that, if 1,  sets the output mode of the object to trigger new calculations as soon as new parameters arrive;\
+\
+Enclosed in the package is David Zicarelli's 
+\f2\i qtmusic
+\f1\i0  object Mac's system X and Classic that interfaces the QuickTime music synthesizer.\
+\
+A big thank you to Richard Dudas for putting the Chaos Collection out there and for providing a code cushion that allowed solving all mine non-linearity non-working coding problems. Thank you to Mikhail Malt, whose Chaos Lib for Ircam's PatchWork/OpenMusic was the chaos primer for musical programming systems and Richard's inspiration for the famous Max Chaos Collection. Thank you also to Paul Bourke whose www pages have been highly enlighting on non-linear processes. You should also check out Richard's abstraction versions, there are brilliant Max programming techniques. All code/math is used with permission.\
+\
+Thanks to L\'8eopold Frey for porting this to winmax!\
+
+\f2\i \
+
+\f1\i0 This is freeware,  provived as is. No warranty. Portions \'a9 Richard Dudas 1996, portions \'a9 Mikhail Malt 1994, portions \'a9 Paul Bourke 1998, portions \'a9 Andr\'8e Sier 2004. This software lib for Max (A-Chaos Lib) is \'a9 Andr\'8e Sier 2004. All rights reserved.
+\f2\i \
+\
+\
+Andr\'8e Sier\
+
+\f1\i0 sier@risco.pt | sier.risco.pt
+\f2\i \
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f3\b \cf0 \ul \ulc0 List of resources for strange attractors(timeline)
+\f2\b0 \ul \
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f1\i0 \cf0 \ulnone Richard Dudas				ftp.ircam.fr/max/chaoscollection.sit\
+Paul Bourke  				http://astronomy.swin.edu.au/%7Epbourke/\
+http://directory.google.com/Top/Science/Math/Chaos_and_Fractals/Chaos/
+\f2\i \
+\
+\
+\pard\tx565\tx1133\tx1700\tx2266\tx2832\tx3401\tx3967\tx4535\tx5102\tx5669\tx6235\tx6802\ql\qnatural
+
+\f3\b \cf0 \ul List of objects for A-Chaos Lib
+\f1\i0\b0 \ulnone \
+\
+a-baker			(known in Chaos Collection as chaos-baker)\
+a-clifford\
+a-collatz\
+a-duffing\
+a-fibonacci\
+a-ginger			(known in Chaos Collection as chaos-ginger)\
+a-henon-heilles	(known in Chaos Collection as chaos-henon-heilles)\
+a-henon			(known in Chaos Collection as chaos-henon)\
+a-henonf\
+a-henonphase\
+a-ikeda\
+a-jong\
+a-logistic			(known in Chaos Collection as chaos-kaosn)\
+a-logistic1			(known in Chaos Collection as chaos-kaosn1)\
+a-lorenz  			(known in Chaos Collection as chaos-lorentz.e)\
+a-lorenz.e			(known in Chaos Collection as chaos-lorentz)\
+a-lyapunov\
+a-navier-stokes		(known in Chaos Collection as chaos-navier-stokes)\
+a-navier-stokes.e	(known in Chaos Collection as chaos-navier-stokes.e)\
+a-rossler			(known in Chaos Collection as chaos-rossler)\
+a-stein			(known in Chaos Collection as chaos-stein)\
+a-stein1			(known in Chaos Collection as chaos-stein1)\
+a-torus			(known in Chaos Collection as chaos-torus)\
+a-verhulst			(known in Chaos Collection as chaos-verhulst)\
+\
+\
+\
+\
+
+\f3\i\b \ul Descriptions of the objects
+\f1\i0\b0 \ulnone \
+(for accurate formulae please refer to the .c files on the src folder)\
+\
+\
+	--- 
+\f0\b chaos-baker
+\f1\b0 	\
+		(
+\f4\fs18 a-baker
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (2 == seed and operating mode) defaults (0.85) // x defaults to (0.85)\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			  -- if fold\
+			   --  if eval > 0.5\
+			    -- eval = 2. - eval*2;\
+			  -- else\
+			    -- eval = eval*2;\
+\
+			  -- if cut\
+			   --  if eval > 0.5\
+			    -- eval =  eval*2 - 1.;\
+			  -- else\
+			    -- eval = eval*2;\
+\
+	--- 
+\f0\b a-clifford
+\f1\b0 	\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (4 ==a, b, c, d) defaults ( ) // x, y default to ( )\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (2d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  dx/dt = sin (a*ny) + c*cos(a*nx)\
+			--  dy/dt = sin (b*nx) + d*cos(b*ny)\
+\
+\
+	--- 
+\f0\b a-collatz
+\f1\b0 	\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (2 == seed and operating mode) defaults ( ) // x defaults to ( )\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			  -- if collatz\
+			   --  if even\
+			    -- num = num / 2;\
+			  -- else\
+			    -- num = 3*num + 1;\
+\
+			  -- if terras\
+			   --  if even\
+			    -- num = num / 2;\
+			  -- else\
+			    -- num = 0.5*(3*num + 1);\
+\
+\
+	--- 
+\f0\b a-duffing
+\f1\b0 	\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (4 ==a, b, w, dt) defaults ( ) // x, y default to ( )\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (2d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  dx/dt = y\
+			--  dy/dt = x - x^3 - a y + b cos(w t)\
+\
+\
+	--- 
+\f0\b a-fibonacci
+\f1\b0 	\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == which sequence) defaults ( ) // x defaults to ( )\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formulae\
+\
+			--recursive function
+\f1\i0 \
+	\
+			-- fibonacci( int n)\
+			\{\
+				if (n<2) \{\
+					if (n==0 || n==1) return 1;\
+					else return (n); \
+				\} else \{\
+					return (fibonacci(n-1)+fibonacci(n-2))\
+				\}\
+			\}\
+\
+\
+	--- 
+\f0\b a-henonheilles
+\f1\b0 	\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (2 == e, dt) defaults ( ) // x, y, x', y' default to  \
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (4d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  dx'/dt += (-x-(2*nx*ny))*dt\
+			--  dy'/dt += (ny*ny-ny-(nx*nx)))*dt\
+			--  dx/dt += (dx'/dt)*dt\
+			--  dy/dt += (dy'/dt)*dt\
+	\
+\
+	--- 
+\f0\b chaos-ginger.a
+\f1\b0 	\
+		(
+\f4\fs18 a-ginger
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == z/seed) defaults (0.82) // x, y default to (0.7,1.2)\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (2d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  dx/dt = 1. -y - z*abs(x)\
+			--  dy/dt = x\
+\
+\
+\
+	--- 
+\f0\b chaos-henon.a
+\f1\b0 	\
+		(
+\f4\fs18 a-henon
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (2 == a, b) defaults (1.43, 0.27) // x, y default to 0.7, 0.3\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (2d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  dx/dt = (y+1) - (a * pow(x,2))\
+			--  dy/dt = b * x\
+\
+	--- 
+\f0\b a-henonf
+\f1\b0 	\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (2 == a, b) defaults (1.43, 0.27) // x, y default to 0.7, 0.3\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (2d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  1. calc henon\
+			--  2. from result calc phase\
+\
+	--- 
+\f0\b a-henon-phase
+\f1\b0 \
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == a) defaults (1.43, 0.27) // x, y default to 0.7, 0.3\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (2d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  2. from result calc phase\
+			--dx/dt = nx*cos(a)-(ny-nx*nx)*sin(a)\
+			-- dy/dt = nx*sin(a)-(ny-nx*nx)*cos(a)\
+\
+\
+	--- 
+\f0\b chaos-n.a
+\f1\b0 	\
+		(
+\f4\fs18 a-logistic
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == lambda) defaults (3.99) // x defaults to 0.75\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formula
+\f1\i0 \
+			--  dx/dt = x * lambda * ( 1-x)\
+\
+	--- 
+\f0\b chaos-n1.a
+\f1\b0 			\
+		(
+\f4\fs18 a-logistic
+\f1\fs24 1)\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == lambda, gamma) defaults (3.99, 3.89) // x defaults to 0.75\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formula
+\f1\i0 \
+			--  dx/dt = x * lambda - gamma* (x*x)\
+\
+	--- 
+\f0\b chaos-lorentz.e.a
+\f1\b0 	\
+		(
+\f4\fs18 a-lorenz.e
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (4 == sigma/a, r, beta/c, dt) defaults (10. 28. 2.67 0.01) // x, y, z default to 0.1\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (3d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			--  dx/dt =a * ( y -x)*dt\
+			--  dy/dt = (x*(r-z))- y*dt\
+			--  dz/dt = (x*y) - (z*c)*dt\
+\
+	--- 
+\f0\b chaos-lorentz.a
+\f1\b0 	\
+		(
+\f4\fs18 a-lorenz
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (4 == sigma/a, r, beta/c, dt) defaults (10. 28. 2.67 0.01) // x, y, z default to 0.1\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (3d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+				- fx = a * (y-x)\
+				- X = x+(dt*fx)\
+				- ffx = a* (Y-X)\
+			--  dx/dt =(dt/2)*(fx+fxx)\
+				- fy = (x*(r-z))-y\
+				-Y = y + (dt*fy)\
+				-ffy = (X*(r-Z))-Y\
+			--  dy/dt =(dt/2)*(fy+ffy)\
+				- fz = (x*y)-(z*c)\
+				- Z = z+(dt*fz)\
+				-ffz = (X*Y)-(Z*c)\
+			--  dz/dt = (dt/2)*(fz+ffz)\
+\
+	--- 
+\f0\b chaos-navier-stokes.e.a
+\f1\b0 	\
+		(
+\f4\fs18 a-navier-stokes
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (2 ==r, dt) defaults (28.4 0.01) // x1, x2, x3, x4, x5  default to 1.\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (5d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			\
+			--- fxn  = (xn+ (xn*dt))\
+			-- xn = (xn+((dt/2) * (xn+fxn)))\
+			- dx1 = (x1*-2) + (4*x2*x3)+(4*x4*x5)\
+			- dx2 = (x2*-9) + (3*x1*x3)\
+			- dx3 = (x3*-5) + (-7*x1*x2)+ r\
+			- dx4 = (x4*-5) + (x1*x5)\
+			- dx5 = (x1*x4*-3) -x5\
+			\
+\
+	--- 
+\f0\b chaos-stein.a
+\f1\b0 			\
+		(
+\f4\fs18 a-stein
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == seed) defaults (0.1) // x defaults to 1.\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formula
+\f1\i0 \
+			--  dx/dt =seed*sin(x*pi)\
+\
+	--- 
+\f0\b chaos-stein1.a
+\f1\b0 			\
+		(
+\f4\fs18 a-stein1
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == seed) defaults (2.3) // x defaults to 0.45\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formula
+\f1\i0 \
+			--  dx/dt =lambda*x*x*sin(x*pi)\
+\
+\
+	--- 
+\f0\b chaos-torus.a
+\f1\b0 	\
+		(
+\f4\fs18 a-torus
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == seed, z) defaults (1.26) // x, y default to 0.7 1.2\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (2d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+				- x, y are modulo+-2\'b9\
+			--  dx/dt = x + z*sin(y)\
+			--  dy/dt = dx/dt + y\
+\
+		mod 2\'b9\
+			((a) > 2\'b9) ? ((while (a)>2\'b9) \{( a)-=2\'b9;\}) : ( ((a)<2\'b9) ? ((while (a)<2\'b9) \{ (a)+=2\'b9;\}) : (a))\
+\
+\
+	--- 
+\f0\b chaos-verhulst.a
+\f1\b0 			\
+		(
+\f4\fs18 a-verhulst
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (1 == lambda) defaults (2.89) // x defaults to 0.5\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (1d)\
+\
+		--
+\f2\i formula
+\f1\i0 \
+			--  dx/dt =x + x*lambda*(1-x)\
+\
+\
+	--- 
+\f0\b chaos-henon-heilles
+\f1\b0 \
+		(
+\f4\fs18 a-henon-heilles
+\f1\fs24 )\
+\
+		--
+\f2\i inputs
+\f1\i0 \
+			--  (2 ==r, dt) defaults (28.4 0.01) // x1, x2, x3, x4, x5  default to 1.\
+		--
+\f2\i outputs
+\f1\i0 \
+			--  (5d)\
+\
+		--
+\f2\i formulae
+\f1\i0 \
+			\
+			--- fxn  = (xn+ (xn*dt))\
+			-- xn = (xn+((dt/2) * (xn+fxn)))\
+			- dx1 = (x1*-2) + (4*x2*x3)+(4*x4*x5)\
+			- dx2 = (x2*-9) + (3*x1*x3)\
+			- dx3 = (x3*-5) + (-7*x1*x2)+ r\
+			- dx4 = (x4*-5) + (x1*x5)\
+			- dx5 = (x1*x4*-3) -x5}
