@@ -1,0 +1,195 @@
+
+
+/*
+	a-objects 0x0C / 20051013
+
+		for max, msp, jitter
+		
+		comments, info, bugs, requests appreciated 
+		mail _at_ s373.net
+			
+	*/
+	
+by andrŽ sier / www.s373.net/sier
+
+this is small growing externals set for max msp jitter by cycling74. ranges from utility objects to some 3d work and more. it used to support os9 and osx for macintosh. it will now support osx on macintosh and also a windows version soon.
+
+
+install notes:
+-	move the folder 'a-objects_0x0C' somewhere max knows of
+-	copy 'a-obj overview 0x0C' to max/patches/extras
+
+modifications: 
+- the a-objects have moved from sier.risco.pt/code/a-objects to s373.net/code/a-objects
+- the license is Creative Commons Attribution-NonCommercial-ShareAlike (a human readable version is enclosed in the file "Creative Commons Deed.html". more at http://creativecommons.org/licenses/by-nc-sa/2.5/)
+- this is donationware: if you'd like to donate to this project, please use the paypal link s373.net/code/a-objects
+
+support:
+	max version 4.3 and higher, though some externals might only run on max 4.5 and higher.
+	jitter 1.2.3 and higher
+	osx 
+	os9 (unsupporting transition: if you need externals for os9 systems please contact me)
+	windows (not yet, expected early december)
+	
+new objects:
+	a-fifo: first-in-first-out method for groups of y points in x dimensions
+	a-hspline3d: hermite splines interpolation method in 3 dimensions
+	gl_grid: makes a 3d grid
+	gl_ruthetra: translates a 2d jitter char uniplanar matrix into a 3d surface
+	a-hemisphere: maps a xy list to a hemisphere
+	
+removed objects:
+	a-fifo3d4: superceded by a-fifo
+	a-colis‹o016: buggy colision detection; removed until a better thingie comes
+	a-espelho: no need for a mirror coordinates object
+	a-ber: better a regular 3dheading obj
+	
+fixes:
+	a-3dkernel: getcombined message fixed
+	tiny mods in help patches
+	a-line3d: stack method ˆ l‡ a-hspline3d
+
+
+todo:
+	fix assist message in all gl_* objects
+	gl_terrain: dynamic dimensions
+	gl_grid: error messages in max window are deprecating performance (bypassable with js)
+	gl_ruthetra: dynamic dimensions
+	a-a: outputting result+1
+	a-ber: replace with simple atan2 (though a 3d one might be better to replace with)
+	a-cloud help file
+	seed a-rand
+	
+	
+object listing and short description (maxobjects.com format):
+
+a-12many		1 float to a list of many floats
+a-2quad 		convert a 3d point to a quad with rotation
+a-3602azi		convert angles system 360->azimuth
+a-3dkernel		compute a 4x3 matrix kernel with 3d transforms and outputs transformed points
+a-a				returns golden proportion
+a-azi2360		convert angles system azimuth->360
+a-cam			1st person 3d camera navigation
+a-celerador		thrust physical model
+a-change		output i,f,l only if change within fuzzy
+a-circulo		outputs a circle <xy> momentum
+a-cloud 		point mass study
+a-count			a floating counter
+a-dd			distance, angle, elevation
+a-delta			difference from previous input: i, f, l
+a-elips			outputs elliptical <xy> coords
+a-fiddle		(pos, amp) list building
+a-fifo			first-in-first-out method for groups of y points in x dimensions
+a-flu			microbes on floats
+a-gaussnoise~ 	msp gaussian noise generation
+a-grav			orbit around a point
+a-hemisphere	maps a xy list to a hemisphere
+a-hglide		list compression/expansion
+a-hspline3d		hermite splines interpolation method in 3 dimensions
+a-hv			map a point to a rect horizontal vertical
+a-hypercube		hypercube xyz coords
+a-kin3d			3d conjugates
+a-kin3ma		2d conjugates
+a-len			lenght to 
+a-line2d		bidimensional line momentum
+a-line3d		tridimensional line momentum
+a-lissa			lissajous xy pattern generator
+a-listscramble	shuffle the elements of a list
+a-map			another linear mapping
+a-mar			wave propagation
+a-mmm			min, max, mean of a stream of numbers
+a-pad			entwine a list with values
+a-perp			calculate the perpendicular vector
+a-plane			calculate a plane from points
+a-polys			0-1 stream to multiple selections
+a-proj			calculate the projection of vector q onto p
+a-pt2plane		point to plane distance
+a-radial		drawing circularly aid
+a-rand			rand numbers mapped to intervals
+a-smooth		one pole low pass smoother on i, f, l
+a-spring		a spring
+a-spring+		a better spring
+a-swarm			a swarm of bees
+a-terr			a terrain model in max
+gl_grid			simple jitter 3d grid 
+gl_grid.js		simple jitter 3d grid 
+gl_kinescope	imax cinema for gl
+gl_ruthetra		ruth/etra synthesizer emulation: mono-channel matrix to surface
+gl_terrain		gl 3d terrain in jitter
+gl_terrain2		gl 3d terrain in jitter
+
+
+history:
+
+__history / changes vs.0x0B__20040807
+
+- - new objects make the distrib: a-3dkernel, a-proj, a-perp, a-cloud,
+a-plane, a-gaussnoise~;
+- - a-cam got a major speed boost due to avoiding sqrt calls on the
+normalizing of the vectors;
+- - the overview file has _not_ been updated;
+
+
+__history / changes vs.0x0A__20040520
+
+- - new objects make the distrib: a-pt2plane, a-terr, a-12many, a-delta,
+a-cam, a-grav;
+- - a-mar now supports grids of 100x100km;
+- - fixed import bug in the terrain objects; now supports custom grids;
+- - fixed many relevant bugs in calculations over a bunch of objects;
+
+
+__history / changes vs.0x09__20040418
+
+- - a-chng replaced with a-change;
+- - gl_terrain and gl_terrain2 max dim size expanded to 256x256 grids
+for finer resolution;
+- - a-rand has been changed due to random repetition issues; 
+new simpler only list method to define the output range of values; 
+all is random when you cant find the link;
+- - fixed init arguments lookup in geometry objects; it was kinda buggy;
+and a-lissa's help patch as well;
+- - remade a-azi2360 and made a-3602azi (with aliases like a-360toazi
+and a-azito360);
+- - added a method alias on a-hv;
+
+
+__history / changes vs.0x08__20040406
+
+- - fixed wrap, fold functions, they were overflowing, all works now
+nicely in a-map;
+- - new: a-azi2360; 
+- - fixed a-line2d and 3d so that they implement poly points response
+and they ended up working something like line and bline;
+
+
+__history / changes vs.0x07__20040402
+
+- - fixed geometry objects input args; now all operate seamlessly;
+- - new geometry objects: a-line2d, a-line3d; a-pad;
+- - fixed hv over 2 args;
+
+__history / changes vs.0x06__20040330
+
+- - chaotic objects have been moved to the A-Chaos Lib, available at
+http://cycling74.com/share/sier
+- - new object a-smooth
+- - a-hv has been touched; a-swarm as well;
+
+__history / changes vs.0x05__20040217
+
+- - first OSX fully compatible version!
+- - new objects (a-swarm, a-polys, a-hv, a-count, a-elips, a-lissa,
+a-rand, gl's)! 
+- - some objects from previous versions disappear (a-alea,
+a-x2y,a-version,etc)
+- - the nato objects are now obsolete and unsupported, but available at
+sier.risco.pt/code;
+
+
+__history / changes vs.0x04__20031209
+
+- - os9 only, like previous versions; 
+- - minor code changes;
+
+
