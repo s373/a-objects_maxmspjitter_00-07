@@ -16,7 +16,7 @@ all my max code @github licensed under GPLv3 ( http://gplv3.fsf.org/ )
 let me know if these are helpful for your art. donations @http://s373.net/code are appreciated.
 
 
-// update 2016
+// update march 2016
 
 as i need to gather scope for my own code & art research, operated by deploying art installation, musical & visual runtime algorithmical compositions/programs since the late 90's that are almost medium free, the object files and source code presented in this repository are published externally at github so that i dont loose all this precious code again -- it took me a couple of years to find it. hours and years of labour and self teaching into the arts of programming have been put into the creation of these files. unfortunatly most of these files do not work at present time (ie, present Max7/OSX versions, but they still probably do with Max3,4/MacOS8.6/9,), and probably should not be too hard for a Max programmer to adapt & compile the source code and make it run on his system, if he wishes too. if any Max user has used these objects before, you can find the source code here which will probably need some adaptor or something of a kind.
 
